@@ -1,0 +1,25 @@
+﻿<Window x:Class="KinectExercises.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cnv="clr-namespace:KinectExercises.Converters"
+        xmlns:local="clr-namespace:KinectExercises"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <cnv:StatusColorConverter x:Key="StatusColorConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <StackPanel>
+        <Ellipse
+             Fill="{Binding stream.Manager.Status, Converter={StaticResource StatusColorConverter}}"
+             Height="24"
+             Width="24"/>
+    </StackPanel>
+
+</Window>
