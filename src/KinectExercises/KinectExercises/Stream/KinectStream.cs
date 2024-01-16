@@ -1,15 +1,18 @@
 ﻿using Microsoft.Kinect;
 using System;
 using System.Collections.Generic;
+using System.Windows.Media.Imaging;
+
 namespace Model.Stream
 {
     public abstract class KinectStream
     {
-        public KinectManager Manager { get; }
+        protected KinectManager Manager { get; }
+        protected KinectSensor Sensor { get => Manager.Sensor; }
+        protected WriteableBitmap Bitmap { get; }
 
-        public KinectSensor Sensor { get => Manager.Sensor; }
 
-        public KinectStream(KinectManager manager)
+        public KinectStream(KinectManager manager, WriteableBitmap bitmap)
         {
             Manager = manager;
         }

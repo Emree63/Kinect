@@ -43,7 +43,7 @@ namespace Model
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs("StatusText"));
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
 
@@ -67,6 +67,11 @@ namespace Model
             Sensor = KinectSensor.GetDefault();
             Sensor.IsAvailableChanged += KinectSensor_IsAvailableChanged;
             StartSensor();
+        }
+
+        ~KinectManager()
+        {
+            StopSensor();
         }
 
         private void KinectSensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)

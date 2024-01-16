@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cnv="clr-namespace:KinectExercises.Converters"
         xmlns:local="clr-namespace:KinectExercises"
+        x:Name="This"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+
 
     <Window.Resources>
         <ResourceDictionary>
@@ -14,12 +16,26 @@
         </ResourceDictionary>
     </Window.Resources>
 
+    <StackPanel >
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Ellipse Height="30" Stroke="Black" Width="30" Fill="{Binding Status, Converter={StaticResource StatusColorConverter}}" Margin="10"/>
+            <TextBlock Text="{Binding StatusText}" TextAlignment="Left" VerticalAlignment="Center" MinWidth="10"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="10,10,10,10"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Color" Padding="10" Click="switchStream" Tag="ColorStream"></Button>
+            <Button Content="Depth" Padding="10" Click="switchStream" Tag="DepthStream"></Button>
+            <Button Content="Infrared" Padding="10" Click="switchStream" Tag="InfraredStream"></Button>
+            <Button Content="Body" Padding="10" Click="switchStream" Tag="None"></Button>
+            <Button Content="Body and color" Padding="10" Click="switchStream" Tag="None"></Button>
+        </StackPanel>
+        <Image Height="301" Width="716" Name="dataFlow"/>
 
-    <StackPanel>
-        <Ellipse
-             Fill="{Binding stream.Manager.Status, Converter={StaticResource StatusColorConverter}}"
-             Height="24"
-             Width="24"/>
+
     </StackPanel>
-
 </Window>
+
