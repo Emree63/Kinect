@@ -6,6 +6,7 @@
 
 &nbsp; ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 &nbsp; ![Visual Studio](https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white)
+
 ---
 
 Ce depôt à pour but de regrouper tout les TP de Réalité Virtuel réalisé durant la 3ème année de BUT.
@@ -44,18 +45,24 @@ Via Visual Studio vous pourrez compiler et lancer le projet, n'oubliez pas de bi
 
 # Technicien 
 
+La composition pour le projet se voit réaliser par deux élèves de l'IUT d'Aubière:
+
+<br>
+<u>Emre KARTAL</u> : emre.kartal@etu.uca.fr
+<br>
+<u>Arthur VALIN</u> : arthur.valin@etu.uca.fr
+
+<br>
+<br>
+
+<div align="center">
 <a href = "https://codefirst.iut.uca.fr/git/emre.kartal">
-<img src="https://codefirst.iut.uca.fr/git/avatars/1ff65c9c5ab0e8c8883fb48adbcf972f?size=72" width="75" >
-</br>
-Emre.kartal@etu.uca.fr
-</br>
+<img src="https://codefirst.iut.uca.fr/git/avatars/1ff65c9c5ab0e8c8883fb48adbcf972f?size=72" width="50" >
 </a>
 <a href = "https://codefirst.iut.uca.fr/git/arthur.valin">
-<img src="https://codefirst.iut.uca.fr/git/avatars/041c57af1e1d1e855876d8abb5f1c143?size=870" width="75" >
-</br>
-Arthur.valin@etu.uca.fr
-</br>
+<img src="https://codefirst.iut.uca.fr/git/avatars/041c57af1e1d1e855876d8abb5f1c143?size=72" width="50">
 </a>
+</div>
 
 © PM1
 
