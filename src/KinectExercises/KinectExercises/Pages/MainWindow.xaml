@@ -33,7 +33,7 @@
             <Button Content="Body" Padding="10" Click="switchStream" Tag="None"></Button>
             <Button Content="Body and color" Padding="10" Click="switchStream" Tag="None"></Button>
         </StackPanel>
-        <Image Height="301" Width="716" Name="dataFlow"/>
+        <Image Stretch="UniformToFill" Name="dataFlow"/>
 
 
     </StackPanel>

@@ -1,6 +1,11 @@
-﻿using Microsoft.Kinect;
-using System;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Kinect;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Model.Stream
@@ -9,8 +14,9 @@ namespace Model.Stream
     {
         protected KinectManager Manager { get; }
         protected KinectSensor Sensor { get => Manager.Sensor; }
-        protected WriteableBitmap Bitmap { get; }
 
+        [ObservableProperty]
+        private WriteableBitmap bitmap;
 
         public KinectStream(KinectManager manager, WriteableBitmap bitmap)
         {

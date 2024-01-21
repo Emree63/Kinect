@@ -1,11 +1,9 @@
 ﻿using Microsoft.Kinect;
 using Model;
 using Model.Stream;
-using System.Diagnostics;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using System.Windows.Media;
-using System.IO;
 using KinectExercises.Stream;
 using System.Windows.Controls;
 
