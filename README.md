@@ -13,9 +13,9 @@ Ce depôt à pour but de regrouper tout les TP de Réalité Virtuel réalisé du
 
 # Répartition du dépôt
 
-[**Sources**](Sources) : **Code de l'application**
+[**Sources**](src) : **Code de l'application**
 
-[**Solution de l'application**](Sources/KinectExercices/KinectExercices.sln) : **Solution de l'application**
+[**Solution de l'application**](src/KinectExercices/KinectExercices.sln) : **Solution de l'application**
 
 
 ### Branches
@@ -42,6 +42,26 @@ git checkout X
 Remplacez "X" par le nom de la branche que vous souhaitez utiliser.
 
 Via Visual Studio vous pourrez compiler et lancer le projet, n'oubliez pas de bien brancher votre kinect 😄.
+
+# Visuel du projet
+
+Sur la vue principale, vous pourrez voir, en cliquant sur les boutons, plusieurs types de visuel à partir de la Kinect :
+
+### Color :
+
+<img src="doc/Images/Color.png" width="450" >
+
+### Depth :
+
+<img src="doc/Images/Depth.png" width="450" >
+
+### Infrared :
+
+<img src="doc/Images/Infrared.png" width="450" >
+
+### Body :
+
+<img src="doc/Images/Body.png" width="450" >
 
 # Technicien 
 
