@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:KinectExercises"
         x:Name="This"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow"
+        Closing="MainWindow_Closing">
 
 
     <Window.Resources>
@@ -16,7 +17,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <StackPanel >
+    <StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Ellipse Height="30" Stroke="Black" Width="30" Fill="{Binding Status, Converter={StaticResource StatusColorConverter}}" Margin="10"/>
             <TextBlock Text="{Binding StatusText}" TextAlignment="Left" VerticalAlignment="Center" MinWidth="10"/>
@@ -30,12 +31,10 @@
             <Button Content="Color" Padding="10" Click="switchStream" Tag="ColorStream"></Button>
             <Button Content="Depth" Padding="10" Click="switchStream" Tag="DepthStream"></Button>
             <Button Content="Infrared" Padding="10" Click="switchStream" Tag="InfraredStream"></Button>
-            <Button Content="Body" Padding="10" Click="switchStream" Tag="None"></Button>
+            <Button Content="Body" Padding="10" Click="switchStream" Tag="BodyStream"></Button>
             <Button Content="Body and color" Padding="10" Click="switchStream" Tag="None"></Button>
         </StackPanel>
-        <Image Height="301" Width="716" Name="dataFlow"/>
-
-
+        <Image Height="501" Width="816" Name="dataFlow" HorizontalAlignment="Center" Margin="10"/>
     </StackPanel>
 </Window>
 

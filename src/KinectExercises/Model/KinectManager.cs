@@ -69,11 +69,6 @@ namespace Model
             StartSensor();
         }
 
-        ~KinectManager()
-        {
-            StopSensor();
-        }
-
         private void KinectSensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
         {
             StatusText = Sensor.IsAvailable ? "Running" : "Kinect Sensor not Available";
