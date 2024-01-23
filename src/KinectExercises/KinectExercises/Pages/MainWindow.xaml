@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:KinectExercises"
         x:Name="This"
         mc:Ignorable="d"
-        Title="MainWindow">
+        Title="MainWindow"
+        Closing="MainWindow_Closing">
 
 
     <Window.Resources>

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using KinectExercises.Stream;
 using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace KinectExercises
 {
@@ -16,22 +17,31 @@ namespace KinectExercises
     {
         private KinectStream? stream = null;
         private KinectManager manager = new();
+        private KinectStreamFactory factory;
 
         void switchStream(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var enumValue = StreamType.None;
             Enum.TryParse(button.Tag.ToString(), out enumValue);
-            stream = new KinectStreamFactory(manager)[enumValue];
-            dataFlow.Source = stream.Source;
+            stream = factory[enumValue];
+            if (stream != null)
+            {
+                dataFlow.Source = stream.Source;
+            }
         }
 
 
         public MainWindow()
         {
-            // stream = new ColorImageStream(manager, bitmap);
+            factory = new(manager);
             InitializeComponent();
             DataContext = manager;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            manager.StopSensor();
         }
 
     }
