@@ -1,14 +1,16 @@
 ﻿using Microsoft.Kinect;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Model.Stream
 {
-    public class InfraredImageStream : KinectStream
+    public class ColorImageStream : KinectStream
     {
+        override public ImageSource Source => Bitmap;
 
         public ColorFrameReader colorFrameReader;
-
+        private WriteableBitmap Bitmap;
         private void Reader_ColorFrameArrived(object sender, ColorFrameArrivedEventArgs e)
         {
             using (ColorFrame colorFrame = e.FrameReference.AcquireFrame())
@@ -27,7 +29,8 @@ namespace Model.Stream
                             colorFrame.CopyConvertedFrameDataToIntPtr(
                                 this.Bitmap.BackBuffer,
                                 (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
-                                ColorImageFormat.Bgra);
+                                ColorImageFormat.Bgra
+                            );
 
                             this.Bitmap.AddDirtyRect(new Int32Rect(0, 0, this.Bitmap.PixelWidth, this.Bitmap.PixelHeight));
                         }
@@ -38,8 +41,10 @@ namespace Model.Stream
             }
         }
 
-        public InfraredImageStream(KinectManager manager, WriteableBitmap bitmap): base(manager, bitmap)
+        public ColorImageStream(KinectManager manager): base(manager)
         {
+            FrameDescription colorFrameDescription = this.Manager.Sensor.ColorFrameSource.CreateFrameDescription(ColorImageFormat.Rgba);
+            Bitmap = new WriteableBitmap(colorFrameDescription.Width, colorFrameDescription.Height, 96, 96, PixelFormats.Bgra32, null);
             this.colorFrameReader = this.Manager.Sensor.ColorFrameSource.OpenReader();
             this.colorFrameReader.FrameArrived += this.Reader_ColorFrameArrived;
 

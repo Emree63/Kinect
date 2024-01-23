@@ -14,11 +14,9 @@ namespace Model.Stream
     {
         protected KinectManager Manager { get; }
         protected KinectSensor Sensor { get => Manager.Sensor; }
+        abstract public ImageSource Source { get; }
 
-        [ObservableProperty]
-        private WriteableBitmap bitmap;
-
-        public KinectStream(KinectManager manager, WriteableBitmap bitmap)
+        public KinectStream(KinectManager manager)
         {
             Manager = manager;
         }
