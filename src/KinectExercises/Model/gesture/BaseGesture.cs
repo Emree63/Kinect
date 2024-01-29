@@ -10,7 +10,7 @@ namespace Model.gesture
     public abstract class BaseGesture
     {
 
-        public event EventHandler GestureRecognized;
+        public event EventHandler<GestureRecognizedEventArgs> GestureRecognized;
 
         public string GestureName { get; private set; }
 
@@ -18,8 +18,8 @@ namespace Model.gesture
 
         protected void OnGestureRecognized()
         {
-            EventHandler handler = GestureRecognized;
-            if (null != handler) handler(this, EventArgs.Empty);
+            EventHandler<GestureRecognizedEventArgs> handler = GestureRecognized;
+            if (null != handler) handler(this, new());
         }
 
 

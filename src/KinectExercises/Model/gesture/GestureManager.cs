@@ -15,11 +15,11 @@ namespace Model.gesture
         public static ReadOnlyCollection<BaseGesture> KnownGestures = new(_KnownGestures);
         public static KinectManager KinectManager { get; set; }
 
-        public static event EventHandler GestureRecognized;
+        public static event EventHandler<GestureRecognizedEventArgs> GestureRecognized;
         public static void OnGestureRecognized()
         {
-            EventHandler handler = GestureRecognized;
-            if (null != handler) handler(typeof(GestureManager), EventArgs.Empty);
+            EventHandler<GestureRecognizedEventArgs> handler = GestureRecognized;
+            if (null != handler) handler(typeof(GestureManager), new());
         }
 
         public static void AddGestures(params BaseGesture[] gestures)
