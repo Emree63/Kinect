@@ -66,7 +66,6 @@ namespace Model
         {
             Sensor = KinectSensor.GetDefault();
             Sensor.IsAvailableChanged += KinectSensor_IsAvailableChanged;
-            StartSensor();
         }
 
         private void KinectSensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)

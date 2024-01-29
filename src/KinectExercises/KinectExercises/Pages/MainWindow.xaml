@@ -5,12 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cnv="clr-namespace:KinectExercises.Converters"
         xmlns:local="clr-namespace:KinectExercises"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         x:Name="This"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Closing="MainWindow_Closing">
-
-
+        Title="MainWindow">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding MainWindowVM.ClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MainWindowVM.StartCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Window.Resources>
         <ResourceDictionary>
             <cnv:StatusColorConverter x:Key="StatusColorConverter" />
@@ -19,8 +27,8 @@
 
     <StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Ellipse Height="30" Stroke="Black" Width="30" Fill="{Binding Status, Converter={StaticResource StatusColorConverter}}" Margin="10"/>
-            <TextBlock Text="{Binding StatusText}" TextAlignment="Left" VerticalAlignment="Center" MinWidth="10"/>
+            <Ellipse Height="30" Stroke="Black" Width="30" Fill="{Binding MainWindowVM.Manager.Status, Converter={StaticResource StatusColorConverter}}" Margin="10"/>
+            <TextBlock Text="{Binding MainWindowVM.Manager.StatusText}" TextAlignment="Left" VerticalAlignment="Center" MinWidth="10"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
             <StackPanel.Resources>
@@ -28,13 +36,13 @@
                     <Setter Property="Margin" Value="10,10,10,10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Content="Color" Padding="10" Click="switchStream" Tag="ColorStream"></Button>
-            <Button Content="Depth" Padding="10" Click="switchStream" Tag="DepthStream"></Button>
-            <Button Content="Infrared" Padding="10" Click="switchStream" Tag="InfraredStream"></Button>
-            <Button Content="Body" Padding="10" Click="switchStream" Tag="BodyStream"></Button>
-            <Button Content="Body and color" Padding="10" Click="switchStream" Tag="None"></Button>
+            <Button Content="Color" Padding="10" Command="{Binding MainWindowVM.SwitchStreamCommand}" CommandParameter="ColorStream"></Button>
+            <Button Content="Depth" Padding="10" Command="{Binding MainWindowVM.SwitchStreamCommand}" CommandParameter="DepthStream"></Button>
+            <Button Content="Infrared" Padding="10" Command="{Binding MainWindowVM.SwitchStreamCommand}" CommandParameter="InfraredStream"></Button>
+            <Button Content="Body" Padding="10" Command="{Binding MainWindowVM.SwitchStreamCommand}" CommandParameter="BodyStream"></Button>
+            <Button Content="Body and color" Padding="10" Command="{Binding MainWindowVM.SwitchStreamCommand}" CommandParameter="None"></Button>
         </StackPanel>
-        <Image Height="501" Width="816" Name="dataFlow" HorizontalAlignment="Center" Margin="10"/>
+        <Image Height="501" Width="816" Source="{Binding MainWindowVM.Stream.Source}" Name="dataFlow" HorizontalAlignment="Center" Margin="10"/>
     </StackPanel>
 </Window>
 
