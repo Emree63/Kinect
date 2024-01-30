@@ -12,14 +12,14 @@ namespace Model.gesture
 
         public event EventHandler<GestureRecognizedEventArgs> GestureRecognized;
 
-        public string GestureName { get; private set; }
+        public abstract string GestureName { get; }
 
         public abstract void TestGesture(Body body);
 
-        protected void OnGestureRecognized()
+        protected void OnGestureRecognized(object sender, GestureRecognizedEventArgs e)
         {
             EventHandler<GestureRecognizedEventArgs> handler = GestureRecognized;
-            if (null != handler) handler(this, new());
+            if (null != handler) handler(this, e);
         }
 
 

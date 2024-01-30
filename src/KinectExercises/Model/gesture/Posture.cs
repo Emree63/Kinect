@@ -13,7 +13,7 @@ namespace Model.gesture
         {
             if (TestPosture(body))
             {
-                OnGestureRecognized();
+                OnGestureRecognized(this, new(body, this));
             }
         }
 

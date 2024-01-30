@@ -7,6 +7,9 @@ using System.Windows.Media;
 using KinectExercises.Stream;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Windows.Ink;
+using Model.gesture;
+using System.Diagnostics;
 
 namespace KinectExercises
 {
@@ -31,12 +34,21 @@ namespace KinectExercises
             }
         }
 
+        private void testGesture(object sender, GestureRecognizedEventArgs e)
+        {
+            Debug.WriteLine("GESTURE !!!" + e.Gesture.GestureName);
+        }
 
         public MainWindow()
         {
             factory = new(manager);
             InitializeComponent();
             DataContext = manager;
+
+            GestureManager.AddGestures(new PostureTwoHandsDragon());
+            GestureManager.GestureRecognized += testGesture;
+
+            GestureManager.StartAcquiringFrames(manager);
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
