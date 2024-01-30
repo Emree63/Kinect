@@ -1,18 +1,8 @@
 ﻿using KinectExercises.Stream;
-using Model.Stream;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Controls;
-using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Diagnostics;
+using Streams;
 
 namespace KinectExercises.ViewModels
 {

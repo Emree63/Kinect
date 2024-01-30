@@ -1,9 +1,10 @@
 ﻿using Microsoft.Kinect;
+using Model;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Model.Stream
+namespace Streams
 {
     public class BodyImageStream : KinectStream
     {
@@ -103,7 +104,7 @@ namespace Model.Stream
         /// </summary>
         private List<Pen> bodyColors;
 
-        override public ImageSource Source
+        public ImageSource Source
         {
             get { return new DrawingImage(this.drawingGroup); }
         }
