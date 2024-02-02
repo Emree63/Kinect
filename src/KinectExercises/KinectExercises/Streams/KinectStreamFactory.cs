@@ -15,7 +15,8 @@ namespace KinectExercises.Stream
                 { StreamType.ColorStream, manager => new ColorImageStream(manager) },
                 { StreamType.DepthStream, manager => new DepthImageStream(manager) },
                 { StreamType.InfraredStream, manager => new InfraredImageStream(manager) },
-                { StreamType.BodyStream, manager => new BodyImageStream(manager) }
+                { StreamType.BodyStream, manager => new BodyImageStream(manager) },
+                { StreamType.BodyAndColorStream, manager => new BodyAndColorImageStream(manager) }
             };
 
             KinectManager = kinectManager;

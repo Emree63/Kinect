@@ -12,6 +12,7 @@ namespace KinectExercises.Stream
         ColorStream,
         DepthStream,
         InfraredStream,
-        BodyStream
+        BodyStream,
+        BodyAndColorStream
     }
 }

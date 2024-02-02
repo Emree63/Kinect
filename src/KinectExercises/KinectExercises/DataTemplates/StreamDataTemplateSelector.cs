@@ -17,6 +17,7 @@ namespace KinectExercises.DataTemplates
                 DepthImageStream _ => SimpleStreamTemplate,
                 InfraredImageStream _ => SimpleStreamTemplate,
                 BodyImageStream _ => BodyStreamTemplate,
+                BodyAndColorImageStream _ => BodyAndColorStreamTemplate,
                 _ => null
             };
     }
