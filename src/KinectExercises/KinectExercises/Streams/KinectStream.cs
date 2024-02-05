@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Model;
 
-namespace Model.Stream
+namespace Streams
 {
     public abstract class KinectStream
     {
         protected KinectManager Manager { get; }
         protected KinectSensor Sensor { get => Manager.Sensor; }
-        abstract public ImageSource Source { get; }
 
         public KinectStream(KinectManager manager)
         {

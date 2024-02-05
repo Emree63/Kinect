@@ -1,13 +1,4 @@
-﻿using Microsoft.Kinect;
-using Model;
-using Model.Stream;
-using System.Windows.Media.Imaging;
-using System.Windows;
-using System.Windows.Media;
-using KinectExercises.Stream;
-using System.Windows.Controls;
-using System.ComponentModel;
-using KinectExercises.ViewModels;
+﻿using KinectExercises.ViewModels;
 
 namespace KinectExercises
 {
@@ -22,7 +13,7 @@ namespace KinectExercises
         {
             MainWindowVM = new MainWindowVM();
             InitializeComponent();
-            DataContext = this;
+            DataContext = MainWindowVM;
         }
 
     }

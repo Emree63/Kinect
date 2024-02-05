@@ -1,13 +1,14 @@
 ﻿using Microsoft.Kinect;
+using Model;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Model.Stream
+namespace Streams
 {
     public class ColorImageStream : KinectStream
     {
-        override public ImageSource Source => Bitmap;
+        public ImageSource Source => Bitmap;
 
         public ColorFrameReader colorFrameReader;
         private WriteableBitmap Bitmap;
