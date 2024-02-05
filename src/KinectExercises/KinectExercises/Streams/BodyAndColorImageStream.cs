@@ -15,10 +15,8 @@ namespace Streams
 {
     public class BodyAndColorImageStream : KinectStream
     {
-        private BodyImageStream BodyImageStream { get; set; }
-        private ColorImageStream ColorImageStream { get; set; }
-        public Canvas Canva => BodyImageStream.Canva;
-        public ImageSource Source => ColorImageStream.Source;
+        public BodyImageStream BodyImageStream { get; set; }
+        public ColorImageStream ColorImageStream { get; set; }
 
         public BodyAndColorImageStream(KinectManager manager) : base(manager)
         {

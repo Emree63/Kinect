@@ -25,19 +25,19 @@
         <cnv:StatusColorConverter x:Key="StatusColorConverter" />
         <DataTemplate x:Key="simpleStreamDataTemplate">
             <Viewbox>
-                <Image Source="{Binding Source}" />
+                <Image Source="{Binding Source}"/>
             </Viewbox>
         </DataTemplate>
         <DataTemplate x:Key="bodyStreamDataTemplate">
             <Viewbox>
-                <ContentControl Content="{Binding Canva}" />
+                <ContentControl Width="{Binding Width}" Height="{Binding Height}" Content="{Binding Canva}" />
             </Viewbox>
         </DataTemplate>
         <DataTemplate x:Key="bodyAndColorStreamDataTemplate">
             <Viewbox>
-                <Canvas Width="816" Height="501">
-                    <Image Source="{Binding Source}" />
-                    <ContentControl Content="{Binding Canva}" />
+                <Canvas Width="512" Height="424">
+                    <Image Width="512" Height="424" Source="{Binding ColorImageStream.Source}" />
+                    <ContentControl Width="512" Height="424" Content="{Binding BodyImageStream.Canva}" />
                 </Canvas>
             </Viewbox>
         </DataTemplate>
@@ -94,12 +94,12 @@
             <Button
                 Padding="10"
                 Command="{Binding SwitchStreamCommand}"
-                CommandParameter="None"
+                CommandParameter="BodyAndColorStream"
                 Content="Body and color" />
         </StackPanel>
         <ContentControl
-            Width="816"
-            Height="501"
+            Width="512" 
+            Height="424"
             Content="{Binding Stream}"
             ContentTemplateSelector="{StaticResource streamDataTemplateSelector}" />
     </StackPanel>

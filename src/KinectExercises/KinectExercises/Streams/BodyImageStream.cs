@@ -9,14 +9,8 @@ using System.Windows.Shapes;
 
 namespace Streams
 {
-    public class BodyImageStream : KinectStream, INotifyPropertyChanged
+    public class BodyImageStream : KinectStream
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Radius of drawn hand circles
@@ -38,12 +32,10 @@ namespace Streams
         /// </summary>
         private const double TrackedBoneThickness = 4.0;
 
-
         /// <summary>
         /// Thickness of inferred joint lines
         /// </summary>
         private const double InferredBoneThickness = 1.0;
-
 
         /// <summary>
         /// Thickness of clip edge rectangles
@@ -52,7 +44,7 @@ namespace Streams
 
         public double Width { get => 512; }
 
-        public double Height { get => 414; }
+        public double Height { get => 424; }
 
         /// <summary>
         /// Constant for clamping Z values of camera space points from being negative
@@ -75,26 +67,7 @@ namespace Streams
         /// </summary>
         private Body[] bodies = null;
 
-
-
-        public Canvas Canva
-        {
-            get => canva;
-
-            private set
-            {
-
-                if (value != null)
-                {
-                    canva = value;
-                    OnPropertyChanged(nameof(Canva));
-                }
-
-            }
-
-        }
-
-        private Canvas canva;
+        public Canvas Canva { get; set; }
 
         /// <summary>
         /// List of BodyInfo objects for each potential body
@@ -142,24 +115,8 @@ namespace Streams
 
         private float JointSpaceHeight { get; set; }
 
-        public BodyImageStream(KinectManager manager) : base(manager) { }
-
-        public void Dispose()
+        public BodyImageStream(KinectManager manager) : base(manager) 
         {
-            if (this.bodyFrameReader != null)
-            {
-                // BodyFrameReder is IDisposable
-                this.bodyFrameReader.Dispose();
-                this.bodyFrameReader = null;
-            }
-        }
-
-
-
-        public void Start()
-        {
-            base.Start();
-
             // get the coordinate mapper
             this.coordinateMapper = this.Sensor.CoordinateMapper;
 
@@ -196,9 +153,6 @@ namespace Streams
 
             // Instantiate a new Canvas
             this.Canva = new Canvas();
-
-            //this.Canva.Background = Brushes.White;
-            OnPropertyChanged(nameof(Canva));
 
             // set the clip rectangle to prevent rendering outside the canvas
             this.Canva.Clip = new RectangleGeometry { Rect = new Rect(0.0, 0.0, this.Width, this.Height) };
@@ -580,23 +534,16 @@ namespace Streams
                 this.Canva.Children.Add(bodyInfo.HandLeftEllipse);
                 this.Canva.Children.Add(bodyInfo.HandRightEllipse);
 
-                OnPropertyChanged(nameof(Canva));
-
-
                 // add joint ellipses of all bodies to canvas
                 foreach (var joint in bodyInfo.JointPoints)
                 {
                     this.Canva.Children.Add(joint.Value);
-
-                    OnPropertyChanged(nameof(Canva));
-
                 }
 
                 // add bone lines of all bodies to canvas
                 foreach (var bone in bodyInfo.Bones)
                 {
                     this.Canva.Children.Add(bodyInfo.BoneLines[bone]);
-                    OnPropertyChanged(nameof(Canva));
                 }
             }
 
@@ -605,9 +552,6 @@ namespace Streams
             this.Canva.Children.Add(this.RightClipEdge);
             this.Canva.Children.Add(this.TopClipEdge);
             this.Canva.Children.Add(this.BottomClipEdge);
-
-            OnPropertyChanged(nameof(Canva));
-
 
             // position the clipped edges
             Canvas.SetLeft(this.LeftClipEdge, 0);
