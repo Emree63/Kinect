@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinectExercises", "KinectExercises\KinectExercises.csproj", "{D23B5F8B-A7AC-4ADA-B556-49BE8D7B36C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{685B6748-9A19-42CB-B4E0-A7B9F3484179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{685B6748-9A19-42CB-B4E0-A7B9F3484179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarioProject", "MarioProject\MarioProject.csproj", "{256EC8CB-09B9-457A-8F31-E76238C76BD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{685B6748-9A19-42CB-B4E0-A7B9F3484179}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{685B6748-9A19-42CB-B4E0-A7B9F3484179}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{685B6748-9A19-42CB-B4E0-A7B9F3484179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{256EC8CB-09B9-457A-8F31-E76238C76BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256EC8CB-09B9-457A-8F31-E76238C76BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256EC8CB-09B9-457A-8F31-E76238C76BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{256EC8CB-09B9-457A-8F31-E76238C76BD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

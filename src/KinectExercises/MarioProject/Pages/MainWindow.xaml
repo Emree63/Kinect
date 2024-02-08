@@ -1,0 +1,32 @@
+﻿<Window x:Class="MarioProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarioProject"
+        mc:Ignorable="d"
+        MinWidth="1000"
+        MaxWidth="1100"
+        MinHeight="600"
+        MaxHeight="650"
+        Height="600" 
+        Width="1000"
+        Title="MainWindow" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/background.jpg" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3" />
+
+        <Image Source="/Images/mario.png" Stretch="Fill" Width="50" Height="100"
+               Margin="10,10,0,0" Grid.Column="1" Grid.Row="1" />
+    </Grid>
+</Window>
