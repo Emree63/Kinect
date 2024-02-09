@@ -6,39 +6,33 @@
         xmlns:cnv="clr-namespace:MarioProject.Converters"
         xmlns:local="clr-namespace:MarioProject"
         mc:Ignorable="d"
-        MinWidth="1000"
+        MinWidth="1100"
         MaxWidth="1100"
-        MinHeight="600"
+        MinHeight="650"
         MaxHeight="650"
-        Height="600" 
-        Width="1000"
+        Height="650" 
+        Width="1100"
         Title="MainWindow" >
     
     <Window.Resources>
         <cnv:BoolToImageConverter x:Key="BoolToImageConverter" />
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="0.6*"/>
-            <ColumnDefinition Width="0.14*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="0.25*"/>
-        </Grid.RowDefinitions>
+        <Image Source="/Images/background.jpg" Stretch="Fill" />
+        <Canvas x:Name="canvas">
+            <Image x:Name="marioImage" Source="/Images/mario.png" Stretch="Fill" Width="50" Height="100"
+       Canvas.Bottom="75" Canvas.Left="100">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="1"/>
+                </Image.RenderTransform>
+            </Image>
 
-        <Image Source="/Images/background.jpg" Stretch="Fill" Grid.ColumnSpan="100" Grid.RowSpan="100" />
+            <Image x:Name="luckyBlockImage" Source="{Binding IsOpen, Converter={StaticResource BoolToImageConverter}, ConverterParameter='luckyBlockOn.png,luckyBlockOff.png'}" Stretch="Fill" Width="50" Height="50"
+                   Canvas.Top="50" Canvas.Left="500" />
+        </Canvas>
+        <Button Content="Sauter" Click="JumpButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
+        <Button Content="Gauche" Click="MoveLeftButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-150,0,0,20"/>
+        <Button Content="Droite" Click="MoveRightButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="150,0,20,20"/>
 
-        <Image Source="/Images/mario.png" Stretch="Fill" Width="50" Height="100"
-               Margin="10,10,0,0" Grid.Column="1" Grid.Row="3" />
-
-        <Image Source="{Binding IsOpen, Converter={StaticResource BoolToImageConverter}, ConverterParameter='luckyBlockOn.png,luckyBlockOff.png'}" Stretch="Fill" Width="50" Height="50"
-           Grid.Column="3" Grid.Row="1" />
     </Grid>
 </Window>
