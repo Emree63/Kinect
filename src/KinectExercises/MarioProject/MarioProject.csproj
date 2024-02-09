@@ -11,9 +11,13 @@
 
     <ItemGroup>
       <None Remove="Images\background.jpg" />
+      <None Remove="Images\bowser.png" />
+      <None Remove="Images\fireball.png" />
       <None Remove="Images\luckyBlockOff.png" />
       <None Remove="Images\luckyBlockOn.png" />
+      <None Remove="Images\luigi.png" />
       <None Remove="Images\mario.png" />
+      <None Remove="Images\waluigi.png" />
     </ItemGroup>
 
 	<ItemGroup>
@@ -25,13 +29,25 @@
 	  <Resource Include="Images\background.jpg">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\bowser.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\fireball.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Images\luckyBlockOff.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Images\luckyBlockOn.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\luigi.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Images\mario.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\waluigi.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
 	</ItemGroup>
