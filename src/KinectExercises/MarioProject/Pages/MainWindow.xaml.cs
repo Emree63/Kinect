@@ -20,9 +20,12 @@ namespace MarioProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool IsOpen { get; set; } = true;
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
     }
 }

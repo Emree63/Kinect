@@ -11,6 +11,8 @@
 
     <ItemGroup>
       <None Remove="Images\background.jpg" />
+      <None Remove="Images\luckyBlockOff.png" />
+      <None Remove="Images\luckyBlockOn.png" />
       <None Remove="Images\mario.png" />
     </ItemGroup>
 
@@ -21,6 +23,12 @@
 
 	<ItemGroup>
 	  <Resource Include="Images\background.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\luckyBlockOff.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\luckyBlockOn.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Images\mario.png">
