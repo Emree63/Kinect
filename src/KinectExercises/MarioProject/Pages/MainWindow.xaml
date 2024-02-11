@@ -13,12 +13,20 @@
     MinHeight="650"
     MaxWidth="1100"
     MaxHeight="650"
+    Icon="/Images/luckyBlockOn.png"
     mc:Ignorable="d">
 
     <Window.Resources>
         <cnv:BoolToImageConverter x:Key="BoolToImageConverter" />
     </Window.Resources>
+
     <Grid>
+        <MediaElement
+            x:Name="backgroundMusic"
+            IsMuted="False"
+            LoadedBehavior="Manual"
+            MediaEnded="backgroundMusic_MediaEnded"
+            Source="/Song/mario.mp3" />
         <Image Source="/Images/background.jpg" Stretch="Fill" />
         <Canvas x:Name="canvas">
             <Image
@@ -67,8 +75,20 @@
             Margin="150,0,20,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="ThrowsFireball"
+            Click="MoveRightButton_Click"
             Content="Droite" />
+        <Button
+            Margin="250,0,20,20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Click="ThrowsFireball"
+            Content="Fire" />
+        <Button
+            Margin="350,0,20,20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Click="ThrowsFireballBowser"
+            Content="Fire" />
         <Button
             x:Name="changeCharacterButton"
             Margin="20"
@@ -76,5 +96,28 @@
             VerticalAlignment="Top"
             Click="ChangeMainCharacterImage_Click"
             Content="Change" />
+        <ProgressBar
+            x:Name="healthBar"
+            Width="200"
+            Height="20"
+            Margin="90,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Foreground="Red"
+            Maximum="100"
+            Minimum="0"
+            Value="{Binding Health}" />
+        <ProgressBar
+            x:Name="healthBarBowser"
+            Width="400"
+            Height="20"
+            Margin="0,20,20,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Foreground="Red"
+            Maximum="100"
+            Minimum="0"
+            Value="{Binding BowserHealth}" />
+
     </Grid>
 </Window>

@@ -13,11 +13,13 @@
       <None Remove="Images\background.jpg" />
       <None Remove="Images\bowser.png" />
       <None Remove="Images\fireball.png" />
+      <None Remove="Images\link.png" />
       <None Remove="Images\luckyBlockOff.png" />
       <None Remove="Images\luckyBlockOn.png" />
       <None Remove="Images\luigi.png" />
       <None Remove="Images\mario.png" />
       <None Remove="Images\waluigi.png" />
+      <None Remove="Song\mario.mp3" />
     </ItemGroup>
 
 	<ItemGroup>
@@ -35,6 +37,9 @@
 	  <Resource Include="Images\fireball.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\link.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Images\luckyBlockOff.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
@@ -48,6 +53,9 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Images\waluigi.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Song\mario.mp3">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
 	</ItemGroup>
