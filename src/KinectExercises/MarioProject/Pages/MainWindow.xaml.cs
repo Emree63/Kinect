@@ -65,10 +65,10 @@ namespace MarioProject
         }
         private void LoadCharacters()
         {
-            characters.Add(new Character("/Images/mario.png", 50, 100));
-            characters.Add(new Character("/Images/luigi.png", 58, 100));
-            characters.Add(new Character("/Images/waluigi.png", 50, 110));
-            characters.Add(new Character("/Images/link.png", 80, 100));
+            characters.Add(new Character("/Images/mario.png", 50, 100, "/Images/fireball.png", 30, 30));
+            characters.Add(new Character("/Images/luigi.png", 58, 100, "/Images/fireball_green.png", 30, 30));
+            characters.Add(new Character("/Images/waluigi.png", 50, 110, "/Images/fireball_purple.png", 30, 30));
+            characters.Add(new Character("/Images/link.png", 80, 100, "/Images/sword.png", 30, 20));
         }
 
         private async void JumpButton_Click(object sender, RoutedEventArgs e)
@@ -149,15 +149,25 @@ namespace MarioProject
             if (heCanPlay)
             {
                 Image fireballImage = new Image();
-                fireballImage.Source = new BitmapImage(new Uri("/Images/fireball.png", UriKind.Relative));
+                fireballImage.Source = new BitmapImage(new Uri(characters[currentCharacterIndex].WeaponImage, UriKind.Relative));
                 fireballImage.Stretch = Stretch.Fill;
-                fireballImage.Width = 30;
-                fireballImage.Height = 30;
+                fireballImage.Width = characters[currentCharacterIndex].WidthWeapon;
+                fireballImage.Height = characters[currentCharacterIndex].HeightWeapon;
 
 
                 Fireball fireball = new Fireball();
                 fireball.Image = fireballImage;
-                fireball.Left = Canvas.GetLeft(mainCharacterImage) + characters[currentCharacterIndex].Width;
+                if (isTurn)
+                {
+                    fireballImage.RenderTransformOrigin = new Point(0.5, 0.5);
+                    ScaleTransform flipTransform = new ScaleTransform(-1, 1);
+                    fireballImage.RenderTransform = flipTransform;
+                    fireball.Left = Canvas.GetLeft(mainCharacterImage) - characters[currentCharacterIndex].Width;
+                }
+                else
+                {
+                    fireball.Left = Canvas.GetLeft(mainCharacterImage) + characters[currentCharacterIndex].Width;
+                }
                 fireball.Bottom = Canvas.GetBottom(mainCharacterImage) + (characters[currentCharacterIndex].Height / 2);
 
                 canvas.Children.Add(fireball.Image);
@@ -167,7 +177,14 @@ namespace MarioProject
 
                 DoubleAnimation fireballAnimation = new DoubleAnimation();
                 fireballAnimation.From = fireball.Left;
-                fireballAnimation.To = canvas.ActualWidth + 100;
+                if (isTurn)
+                {
+                    fireballAnimation.To = -1000;
+                }
+                else
+                {
+                    fireballAnimation.To = canvas.ActualWidth + 100;
+                }
                 fireballAnimation.Duration = TimeSpan.FromSeconds(2);
 
                 fireballAnimation.Completed += (sender, e) =>
