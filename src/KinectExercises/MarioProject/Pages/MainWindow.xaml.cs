@@ -1,5 +1,7 @@
 ﻿using MarioProject.Models;
+using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -17,8 +19,9 @@ namespace MarioProject
         private List<Character> characters = new List<Character>();
         private int currentCharacterIndex = 0;
         public bool IsOpen { get; set; } = false;
-        private bool heCanPlay = true;
+        private bool heCanPlay = false;
         private bool isJumping = false;
+        private bool isJumpingBowser = false;
         private bool isTurn = false;
 
         private double health = 100;
@@ -56,6 +59,7 @@ namespace MarioProject
             LoadCharacters();
             UpdateCharacterButtonContent();
             DataContext = this;
+            Start();
         }
 
         private void backgroundMusic_MediaEnded(object sender, RoutedEventArgs e)
@@ -71,7 +75,7 @@ namespace MarioProject
             characters.Add(new Character("/Images/link.png", 80, 100, "/Images/sword.png", 30, 20));
         }
 
-        private async void JumpButton_Click(object sender, RoutedEventArgs e)
+        private async void JumpMainCharacter_Click(object sender, RoutedEventArgs e)
         {
             if (!isJumping && heCanPlay)
             {
@@ -95,7 +99,7 @@ namespace MarioProject
                 isJumping = false;
             }
         }
-        private void MoveLeftButton_Click(object sender, RoutedEventArgs e)
+        private void MoveLeftMainCharacter_Click(object sender, RoutedEventArgs e)
         {
             if (heCanPlay)
             {
@@ -116,7 +120,7 @@ namespace MarioProject
             }
         }
 
-        private void MoveRightButton_Click(object sender, RoutedEventArgs e)
+        private void MoveRightMainCharacter_Click(object sender, RoutedEventArgs e)
         {
             if (heCanPlay)
             {
@@ -137,6 +141,121 @@ namespace MarioProject
             }
         }
 
+        private void MoveLeftBowser()
+        {
+            double newPosition = Canvas.GetRight(bowserImage) + 50; 
+            if (newPosition + bowserImage.ActualWidth <= canvas.ActualWidth)
+            {
+                DoubleAnimation moveAnimation = new DoubleAnimation();
+                moveAnimation.From = Canvas.GetRight(bowserImage);
+                moveAnimation.To = newPosition;
+                moveAnimation.Duration = TimeSpan.FromSeconds(0.35);
+
+                bowserImage.BeginAnimation(Canvas.RightProperty, moveAnimation);
+            }
+        }
+
+        private void MoveRightBowser()
+        {
+
+            double newPosition = Canvas.GetRight(bowserImage) - 50;
+            if (newPosition >= 0)
+            {
+                DoubleAnimation moveAnimation = new DoubleAnimation();
+                moveAnimation.From = Canvas.GetRight(bowserImage);
+                moveAnimation.To = newPosition;
+                moveAnimation.Duration = TimeSpan.FromSeconds(0.35);
+
+                bowserImage.BeginAnimation(Canvas.RightProperty, moveAnimation);
+            }
+        }
+
+        private async void JumpBowser()
+        {
+            if (!isJumpingBowser)
+            {
+                isJumpingBowser = true;
+                DoubleAnimation jumpAnimation = new DoubleAnimation();
+                jumpAnimation.From = Canvas.GetBottom(bowserImage);
+                jumpAnimation.To = Canvas.GetBottom(bowserImage) + 150;
+                jumpAnimation.Duration = TimeSpan.FromSeconds(0.5);
+
+                DoubleAnimation fallAnimation = new DoubleAnimation();
+                fallAnimation.From = Canvas.GetBottom(bowserImage) + 150;
+                fallAnimation.To = Canvas.GetBottom(bowserImage);
+                fallAnimation.Duration = TimeSpan.FromSeconds(0.5);
+
+                jumpAnimation.Completed += (s, _) =>
+                {
+                    bowserImage.BeginAnimation(Canvas.BottomProperty, fallAnimation);
+                };
+                bowserImage.BeginAnimation(Canvas.BottomProperty, jumpAnimation);
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                isJumpingBowser = false;
+            }
+        }
+
+        private CancellationTokenSource cancellationTokenSource;
+
+        private async void Start()
+        {
+            await Task.Delay(2000);
+            heCanPlay = true;
+            cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
+
+            Random random = new Random();
+
+            while (heCanPlay)
+            {
+                Task jumpTask = JumpAsync(cancellationToken);
+                Task fireballTask = ThrowFireballBowserAsync(cancellationToken);
+                Task walkTask = WalkAsync(cancellationToken);
+
+                await Task.WhenAll(jumpTask, fireballTask, walkTask);
+            }
+        }
+
+        private async Task JumpAsync(CancellationToken cancellationToken)
+        {
+            Random random = new Random();
+            while (!cancellationToken.IsCancellationRequested && heCanPlay)
+            {
+                await Task.Delay(random.Next(1000, 2501));
+                if (!cancellationToken.IsCancellationRequested && heCanPlay)
+                {
+                    JumpBowser();
+                }
+            }
+        }
+
+        private async Task ThrowFireballBowserAsync(CancellationToken cancellationToken)
+        {
+            Random random = new Random();
+            while (!cancellationToken.IsCancellationRequested && heCanPlay)
+            {
+                await Task.Delay(random.Next(200, 1801));
+                if (!cancellationToken.IsCancellationRequested && heCanPlay)
+                {
+                    ThrowsFireballBowser();
+                }
+            }
+        }
+
+        private async Task WalkAsync(CancellationToken cancellationToken)
+        {
+            Random random = new Random();
+            while (!cancellationToken.IsCancellationRequested && heCanPlay)
+            {
+                await Task.Delay(random.Next(1000, 2001));
+                if (!cancellationToken.IsCancellationRequested && heCanPlay)
+                {
+                    MoveLeftBowser();
+                    await Task.Delay(700);
+                    MoveRightBowser();
+                }
+            }
+        }
         public class Fireball
         {
             public Image Image { get; set; }
@@ -201,7 +320,7 @@ namespace MarioProject
             }
         }
 
-        private void ThrowsFireballBowser(object sender, RoutedEventArgs e)
+        private void ThrowsFireballBowser()
         {
             Image fireballImage = new Image();
             fireballImage.Source = new BitmapImage(new Uri("/Images/fireball.png", UriKind.Relative));
@@ -216,7 +335,7 @@ namespace MarioProject
             Fireball fireball = new Fireball();
             fireball.Image = fireballImage;
             fireball.Left = canvas.ActualWidth - Canvas.GetRight(bowserImage) - 90;
-            fireball.Bottom = Canvas.GetBottom(bowserImage) + 80;
+            fireball.Bottom = Canvas.GetBottom(bowserImage) + 70;
 
             canvas.Children.Add(fireball.Image);
 
@@ -256,7 +375,7 @@ namespace MarioProject
             double mainCharacterBottom = mainCharacterTop + mainCharacterImage.ActualHeight;
 
             if ((fireballLeft >= mainCharacterLeft && fireballLeft <= mainCharacterRight) &&
-                (fireballBottom >= mainCharacterTop && fireballBottom <= mainCharacterBottom))
+                (fireballBottom >= mainCharacterTop && fireballBottom <= mainCharacterBottom) && heCanPlay)
             {
                 canvas.Children.Remove(fireball.Image);
 
@@ -286,7 +405,7 @@ namespace MarioProject
             double bowserBottom = bowserTop + bowserImage.ActualHeight;
 
             if ((fireballLeft >= bowserLeft && fireballLeft <= bowserRight) &&
-                (fireballBottom >= bowserTop && fireballBottom <= bowserBottom))
+                (fireballBottom >= bowserTop && fireballBottom <= bowserBottom) && heCanPlay)
             {
                 canvas.Children.Remove(fireball.Image);
 

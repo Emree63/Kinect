@@ -63,31 +63,25 @@
             Margin="0,0,0,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="JumpButton_Click"
+            Click="JumpMainCharacter_Click"
             Content="Sauter" />
         <Button
             Margin="-150,0,0,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="MoveLeftButton_Click"
+            Click="MoveLeftMainCharacter_Click"
             Content="Gauche" />
         <Button
             Margin="150,0,20,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="MoveRightButton_Click"
+            Click="MoveRightMainCharacter_Click"
             Content="Droite" />
         <Button
             Margin="250,0,20,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Click="ThrowsFireball"
-            Content="Fire" />
-        <Button
-            Margin="350,0,20,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Click="ThrowsFireballBowser"
             Content="Fire" />
         <Button
             x:Name="changeCharacterButton"
