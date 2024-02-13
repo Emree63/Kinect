@@ -30,65 +30,44 @@
         <Image Source="/Images/background.jpg" Stretch="Fill" />
         <Canvas x:Name="canvas">
             <Image
-                x:Name="mainCharacterImage"
-                Canvas.Left="100"
-                Canvas.Bottom="79"
-                Width="50"
-                Height="100"
-                Source="/Images/mario.png"
-                Stretch="Fill">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="1" />
-                </Image.RenderTransform>
-            </Image>
-
-            <Image
-                x:Name="bowserImage"
-                Canvas.Right="100"
-                Canvas.Bottom="79"
-                Width="110"
-                Height="130"
-                Source="/Images/bowser.png"
-                Stretch="Fill" />
-            <Image
                 x:Name="luckyBlockImage"
                 Canvas.Left="500"
                 Canvas.Top="50"
                 Width="50"
                 Height="50"
-                Source="{Binding IsOpen, Converter={StaticResource BoolToImageConverter}, ConverterParameter='luckyBlockOn.png,luckyBlockOff.png'}"
+                Source="{Binding Manager.Status, Converter={StaticResource BoolToImageConverter}, ConverterParameter='luckyBlockOn.png,luckyBlockOff.png'}"
                 Stretch="Fill" />
         </Canvas>
         <Button
             Margin="0,0,0,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="JumpMainCharacter_Click"
+            Command="{Binding JumpMainCharacter_ClickCommand}"
             Content="Sauter" />
         <Button
             Margin="-150,0,0,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="MoveLeftMainCharacter_Click"
+            Command="{Binding MoveLeftMainCharacter_ClickCommand}"
             Content="Gauche" />
         <Button
             Margin="150,0,20,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="MoveRightMainCharacter_Click"
+            Command="{Binding MoveRightMainCharacter_ClickCommand}"
             Content="Droite" />
         <Button
             Margin="250,0,20,20"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Click="ThrowsFireball"
+            Command="{Binding ThrowsFireballCommand}"
             Content="Fire" />
         <Button
             x:Name="changeCharacterButton"
             Margin="20"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Click="ChangeMainCharacterImage_Click"
+            Command="{Binding ChangeMainCharacterImage_ClickCommand}"
             Content="Change" />
         <ProgressBar
             x:Name="healthBar"
