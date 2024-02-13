@@ -1,15 +1,6 @@
-﻿using Microsoft.Kinect;
-using Model;
-using Model.Stream;
-using System.Windows.Media.Imaging;
-using System.Windows;
-using System.Windows.Media;
-using KinectExercises.Stream;
-using System.Windows.Controls;
-using System.ComponentModel;
-using System.Windows.Ink;
-using Model.gesture;
+﻿using Model.gesture;
 using System.Diagnostics;
+using KinectExercises.ViewModels;
 
 namespace KinectExercises
 {
@@ -18,21 +9,7 @@ namespace KinectExercises
     /// </summary>
     public partial class MainWindow
     {
-        private KinectStream? stream = null;
-        private KinectManager manager = new();
-        private KinectStreamFactory factory;
-
-        void switchStream(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var enumValue = StreamType.None;
-            Enum.TryParse(button.Tag.ToString(), out enumValue);
-            stream = factory[enumValue];
-            if (stream != null)
-            {
-                dataFlow.Source = stream.Source;
-            }
-        }
+        public MainWindowVM MainWindowVM { get; set; }
 
         private void testGesture(object sender, GestureRecognizedEventArgs e)
         {
@@ -41,20 +18,19 @@ namespace KinectExercises
 
         public MainWindow()
         {
-            factory = new(manager);
+            MainWindowVM = new();
             InitializeComponent();
-            DataContext = manager;
+            DataContext = MainWindowVM;
 
-            GestureManager.AddGestures(new PostureTwoHandsDragon());
+            GestureManager.AddGestures(
+                new PostureOneHandUp(), 
+                new PostureRightHand(), 
+                new PostureLeftHand(),
+                new PostureFireball()
+                );
             GestureManager.GestureRecognized += testGesture;
 
-            GestureManager.StartAcquiringFrames(manager);
+            GestureManager.StartAcquiringFrames(MainWindowVM.Manager);
         }
-
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-            manager.StopSensor();
-        }
-
     }
 }

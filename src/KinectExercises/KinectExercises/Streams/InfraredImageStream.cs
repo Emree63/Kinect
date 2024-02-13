@@ -1,9 +1,10 @@
 ﻿using Microsoft.Kinect;
+using Model;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Model.Stream
+namespace Streams
 {
     public class InfraredImageStream : KinectStream
     {
@@ -31,7 +32,7 @@ namespace Model.Stream
         /// </summary>
         private const float InfraredOutputValueMaximum = 1.0f;
 
-        override public ImageSource Source => Bitmap;
+        public ImageSource Source => Bitmap;
 
         private void Reader_InfraredFrameArrived(object sender, InfraredFrameArrivedEventArgs e)
         {

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Kinect;
-using System;
-using System.Drawing;
+using Model;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Model.Stream
+namespace Streams
 {
     public class DepthImageStream : KinectStream
     {
@@ -15,7 +14,7 @@ namespace Model.Stream
         private const int MapDepthToByte = 8000 / 256;
         private WriteableBitmap Bitmap;
 
-        override public ImageSource Source => Bitmap;
+        public ImageSource Source => Bitmap;
 
         public DepthFrameReader depthFrameReader;
         private void Reader_FrameArrived(object sender, DepthFrameArrivedEventArgs e)

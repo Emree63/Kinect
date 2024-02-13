@@ -1,40 +1,107 @@
-﻿<Window x:Class="KinectExercises.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:cnv="clr-namespace:KinectExercises.Converters"
-        xmlns:local="clr-namespace:KinectExercises"
-        x:Name="This"
-        mc:Ignorable="d"
-        Title="MainWindow"
-        Closing="MainWindow_Closing">
+﻿<Window
+    x:Class="KinectExercises.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cnv="clr-namespace:KinectExercises.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:KinectExercises"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:template="clr-namespace:KinectExercises.DataTemplates"
+    x:Name="This"
+    Title="MainWindow"
+    mc:Ignorable="d">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding ClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding StartCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Resources>
-        <ResourceDictionary>
-            <cnv:StatusColorConverter x:Key="StatusColorConverter" />
-        </ResourceDictionary>
+        <cnv:StatusColorConverter x:Key="StatusColorConverter" />
+        <DataTemplate x:Key="simpleStreamDataTemplate">
+            <Viewbox>
+                <Image Source="{Binding Source}"/>
+            </Viewbox>
+        </DataTemplate>
+        <DataTemplate x:Key="bodyStreamDataTemplate">
+            <Viewbox>
+                <ContentControl Width="{Binding Width}" Height="{Binding Height}" Content="{Binding Canva}" />
+            </Viewbox>
+        </DataTemplate>
+        <DataTemplate x:Key="bodyAndColorStreamDataTemplate">
+            <Viewbox>
+                <Canvas Width="512" Height="424">
+                    <Image Width="512" Height="424" Source="{Binding ColorImageStream.Source}" />
+                    <ContentControl Width="512" Height="424" Content="{Binding BodyImageStream.Canva}" />
+                </Canvas>
+            </Viewbox>
+        </DataTemplate>
+        <template:StreamDataTemplateSelector
+            x:Key="streamDataTemplateSelector"
+            BodyAndColorStreamTemplate="{StaticResource bodyAndColorStreamDataTemplate}"
+            BodyStreamTemplate="{StaticResource bodyStreamDataTemplate}"
+            SimpleStreamTemplate="{StaticResource simpleStreamDataTemplate}" />
     </Window.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Ellipse Height="30" Stroke="Black" Width="30" Fill="{Binding Status, Converter={StaticResource StatusColorConverter}}" Margin="10"/>
-            <TextBlock Text="{Binding StatusText}" TextAlignment="Left" VerticalAlignment="Center" MinWidth="10"/>
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Ellipse
+                Width="30"
+                Height="30"
+                Margin="10"
+                Fill="{Binding Manager.Status, Converter={StaticResource StatusColorConverter}}"
+                Stroke="Black" />
+            <TextBlock
+                MinWidth="10"
+                VerticalAlignment="Center"
+                Text="{Binding Manager.StatusText}"
+                TextAlignment="Left" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Margin" Value="10,10,10,10"/>
+                    <Setter Property="Margin" Value="10,10,10,10" />
                 </Style>
             </StackPanel.Resources>
-            <Button Content="Color" Padding="10" Click="switchStream" Tag="ColorStream"></Button>
-            <Button Content="Depth" Padding="10" Click="switchStream" Tag="DepthStream"></Button>
-            <Button Content="Infrared" Padding="10" Click="switchStream" Tag="InfraredStream"></Button>
-            <Button Content="Body" Padding="10" Click="switchStream" Tag="BodyStream"></Button>
-            <Button Content="Body and color" Padding="10" Click="switchStream" Tag="None"></Button>
+            <Button
+                Padding="10"
+                Command="{Binding SwitchStreamCommand}"
+                CommandParameter="ColorStream"
+                Content="Color" />
+            <Button
+                Padding="10"
+                Command="{Binding SwitchStreamCommand}"
+                CommandParameter="DepthStream"
+                Content="Depth" />
+            <Button
+                Padding="10"
+                Command="{Binding SwitchStreamCommand}"
+                CommandParameter="InfraredStream"
+                Content="Infrared" />
+            <Button
+                Padding="10"
+                Command="{Binding SwitchStreamCommand}"
+                CommandParameter="BodyStream"
+                Content="Body" />
+            <Button
+                Padding="10"
+                Command="{Binding SwitchStreamCommand}"
+                CommandParameter="BodyAndColorStream"
+                Content="Body and color" />
         </StackPanel>
-        <Image Height="501" Width="816" Name="dataFlow" HorizontalAlignment="Center" Margin="10"/>
+        <ContentControl
+            Width="512" 
+            Height="424"
+            Content="{Binding Stream}"
+            ContentTemplateSelector="{StaticResource streamDataTemplateSelector}" />
     </StackPanel>
 </Window>
 
