@@ -45,7 +45,7 @@ namespace KinectExercises
             InitializeComponent();
             DataContext = manager;
 
-            GestureManager.AddGestures(new PostureTwoHandsDragon());
+            GestureManager.AddGestures(new PostureRightHandUp());
             GestureManager.GestureRecognized += testGesture;
 
             GestureManager.StartAcquiringFrames(manager);
