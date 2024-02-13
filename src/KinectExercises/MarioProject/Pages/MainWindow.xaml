@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cnv="clr-namespace:MarioProject.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:MarioProject"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
@@ -15,6 +16,15 @@
     MaxHeight="650"
     Icon="/Images/luckyBlockOn.png"
     mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding ClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding StartCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Resources>
         <cnv:BoolToImageConverter x:Key="BoolToImageConverter" />
@@ -38,30 +48,6 @@
                 Source="{Binding Manager.Status, Converter={StaticResource BoolToImageConverter}, ConverterParameter='luckyBlockOn.png,luckyBlockOff.png'}"
                 Stretch="Fill" />
         </Canvas>
-        <Button
-            Margin="0,0,0,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Command="{Binding JumpMainCharacter_ClickCommand}"
-            Content="Sauter" />
-        <Button
-            Margin="-150,0,0,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Command="{Binding MoveLeftMainCharacter_ClickCommand}"
-            Content="Gauche" />
-        <Button
-            Margin="150,0,20,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Command="{Binding MoveRightMainCharacter_ClickCommand}"
-            Content="Droite" />
-        <Button
-            Margin="250,0,20,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Command="{Binding ThrowsFireballCommand}"
-            Content="Fire" />
         <Button
             x:Name="changeCharacterButton"
             Margin="20"

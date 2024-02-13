@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
 using Microsoft.Kinect;
+using Model.gesture;
+using System.Diagnostics;
 
 namespace MarioProject.ViewModels
 {
@@ -50,6 +52,36 @@ namespace MarioProject.ViewModels
             this.changeCharacterButton = changeCharacterButton;
             InitializeUI();
             UpdateCharacterButtonContent();
+
+            GestureManager.AddGestures(
+                new PostureOneHandUp(),
+                new PostureRightHand(),
+                new PostureLeftHand(),
+                new PostureFireball()
+                );
+            GestureManager.GestureRecognized += onGestureRecognized;
+
+            GestureManager.StartAcquiringFrames(Manager);
+        }
+
+        private void onGestureRecognized(object sender, GestureRecognizedEventArgs e)
+        {
+            switch(e.Gesture)
+            {
+                case PostureOneHandUp:
+                    JumpMainCharacter(); 
+                    break;
+                case PostureRightHand:
+                    MoveRightMainCharacter();
+                    break;
+                case PostureLeftHand:
+                    MoveLeftMainCharacter();
+                    break;
+                case PostureFireball:
+                    ThrowsFireball();
+                    break;
+
+            }
         }
 
         private void InitializeUI()
@@ -96,7 +128,7 @@ namespace MarioProject.ViewModels
         }
 
         [RelayCommand]
-        public async void JumpMainCharacter_Click()
+        public async void JumpMainCharacter()
         {
             if (!isJumping && heCanPlay)
             {
@@ -122,7 +154,7 @@ namespace MarioProject.ViewModels
         }
 
         [RelayCommand]
-        public void MoveLeftMainCharacter_Click()
+        public void MoveLeftMainCharacter()
         {
             if (heCanPlay)
             {
@@ -144,7 +176,7 @@ namespace MarioProject.ViewModels
         }
 
         [RelayCommand]
-        public void MoveRightMainCharacter_Click()
+        public void MoveRightMainCharacter()
         {
             if (heCanPlay)
             {
