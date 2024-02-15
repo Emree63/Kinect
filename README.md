@@ -44,7 +44,9 @@ Remplacez "X" par le nom de la branche que vous souhaitez utiliser.
 Via Visual Studio vous pourrez compiler et lancer le projet, n'oubliez pas de bien brancher votre kinect 😄.
 
 # Visuel du projet
+Le projet contient deux solutions.
 
+## KinectExercices - Contenant le TP 1 et 2.
 Sur la vue principale, vous pourrez voir, en cliquant sur les boutons, plusieurs types de visuel à partir de la Kinect :
 
 ### Color :
@@ -62,6 +64,18 @@ Sur la vue principale, vous pourrez voir, en cliquant sur les boutons, plusieurs
 ### Body :
 
 <img src="doc/Images/Body.png" width="450" >
+
+## MarioProject - Contenant notre projet pour le TP3.
+
+<img src="doc/Images/KinectGame.PNG" width="450" >
+
+Le but du jeu est de vaincre le Bowser adverse en tirant des boules de feux, tout en esquivant ses projectiles.
+
+### Contrôles : 
+Sauter : Lever un bras en l'air (n'importe lequel)
+Droite : Tendre un bras à Droite
+Gauche : Tendre un bras à gauche
+Boule de feu : Hadouken !
 
 # Technicien 
 
