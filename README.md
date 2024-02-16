@@ -24,7 +24,11 @@ Ce depôt à pour but de regrouper tout les TP de Réalité Virtuel réalisé du
 
 [**Exercice 1**](https://codefirst.iut.uca.fr/git/emre.kartal/Kinect/src/branch/Ex01) : Exercice 1, lien vers la [consigne !](https://codefirst.iut.uca.fr/git/mchSamples_VR-AR-MR/mchkinectsamples/src/branch/master/exo1_subject.md)
 
+[**Exercice 2**](https://codefirst.iut.uca.fr/git/emre.kartal/Kinect/src/branch/Ex02) : Exercice 2, lien vers la [consigne !](https://codefirst.iut.uca.fr/git/mchSamples_VR-AR-MR/mchkinectsamples/src/branch/master/exo2_subject.md)
 
+[**Exercice 3**](https://codefirst.iut.uca.fr/git/emre.kartal/Kinect/src/branch/Ex03) : Exercice 3, lien vers la [consigne !](https://codefirst.iut.uca.fr/git/mchSamples_VR-AR-MR/mchkinectsamples/src/branch/master/exo3_subject.md)
+
+:information_source: *L'ensemble des TP a été fusionné dans le master, mais vous pourrez visualiser comment ils ont été réalisés indépendamment les uns des autres via les branches.*
 
 # Récupérer le Projet
 
@@ -65,17 +69,23 @@ Sur la vue principale, vous pourrez voir, en cliquant sur les boutons, plusieurs
 
 <img src="doc/Images/Body.png" width="450" >
 
+
+**:warning:Pour visualiser le TP2, cela se fait via la console dans Visual Studio.**
+
+
 ## MarioProject - Contenant notre projet pour le TP3.
 
 <img src="doc/Images/KinectGame.PNG" width="450" >
 
 Le but du jeu est de vaincre le Bowser adverse en tirant des boules de feux, tout en esquivant ses projectiles.
 
+:information_source: *Lorsque vous connecterez la Kinect, le bloc en haut au centre de l'écran s'allumera et la partie pourra démarrer. N'hésitez donc pas à choisir le personnage qui vous convient avant de connecter la Kinect.*
+
 ### Contrôles : 
-Sauter : Lever un bras en l'air (n'importe lequel)
-Droite : Tendre un bras à Droite
-Gauche : Tendre un bras à gauche
-Boule de feu : Hadouken !
+**Sauter** : Lever un bras en l'air (n'importe lequel)</br>
+**Droite** : Tendre un bras à Droite :arrow_right:</br>
+**Gauche** : Tendre un bras à gauche :arrow_left:</br>
+**Boule de feu** : Hadouken !:fire:
 
 # Technicien 
 
