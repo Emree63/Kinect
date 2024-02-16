@@ -44,7 +44,7 @@ Remplacez "X" par le nom de la branche que vous souhaitez utiliser.
 Via Visual Studio vous pourrez compiler et lancer le projet, n'oubliez pas de bien brancher votre kinect 😄.
 
 # Visuel du projet
-Le projet contient deux solutions.
+La solution contient deux projets.
 
 ## KinectExercices - Contenant le TP 1 et 2.
 Sur la vue principale, vous pourrez voir, en cliquant sur les boutons, plusieurs types de visuel à partir de la Kinect :
